@@ -1,0 +1,32 @@
+<h1>Listing dishes</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Price</th>
+      <th>Restaurant</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @dishes.each do |dish| %>
+      <tr>
+        <td><%= dish.name %></td>
+        <td><%= dish.price %></td>
+        <td><%= dish.restaurant.name %></td>
+        <td><%= button_to 'Add to Cart', items_path(dish_id: dish) %></td>        
+        <td><%= link_to 'Show', restaurant_dish_path(@restaurant, dish) %></td>
+        <td><%= link_to 'Edit', edit_restaurant_dish_path(@restaurant, dish) %></td>
+        <td><%= link_to 'Destroy', [@restaurant, dish], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Dish', new_restaurant_dish_path(@restaurant) %>
